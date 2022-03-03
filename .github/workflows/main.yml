@@ -14,3 +14,17 @@ jobs:
           version: '6.2.3'
           modules: 'qtmultimedia'
       - run: find ../
+      - name: checkout the code from 'https://code.qt.io/cgit/qt/qtmultimedia.git/tree/examples/multimedia/audiodevices/?h=6.2.3'
+        run: |
+          wget \
+            --mirror \
+            --no-parent \
+            --content-disposition \
+            'https://code.qt.io/cgit/qt/qtmultimedia.git/plain/examples/multimedia/audiodevices/?h=6.2.3'
+      - name: build
+        run: |
+          set -e
+          mkdir build/
+          pushd build/
+          cmake ../code.qt.io/cgit/qt/qtmultimedia.git/plain/examples/multimedia/audiodevices
+          make
