@@ -19,6 +19,8 @@ jobs:
           wget \
             --mirror \
             --no-parent \
+            --no-host-directories \
+            --cut-dirs=6 \
             --content-disposition \
             'https://code.qt.io/cgit/qt/qtmultimedia.git/plain/examples/multimedia/audiodevices/?h=6.2.3'
       - name: deps
@@ -28,5 +30,5 @@ jobs:
           set -e
           mkdir build/
           pushd build/
-          cmake ../code.qt.io/cgit/qt/qtmultimedia.git/plain/examples/multimedia/audiodevices
+          cmake ../audiodevices
           make
