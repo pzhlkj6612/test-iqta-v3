@@ -22,7 +22,7 @@ jobs:
             --content-disposition \
             'https://code.qt.io/cgit/qt/qtmultimedia.git/plain/examples/multimedia/audiodevices/?h=6.2.3'
       - name: deps
-        run: apt install -y libgstreamer-plugins-base1.0-0
+        run: sudo apt install -y libgstreamer-plugins-base1.0-0
       - name: build
         run: |
           set -e
