@@ -1,0 +1,31 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.2.2'
+      - run: find ../
+      - name: checkout the code from 'https://code.qt.io/cgit/qt/qtwebengine.git/tree/examples/webenginequick/minimal/?h=6.2.2'
+        run: |
+          wget \
+            --mirror \
+            --no-parent \
+            --no-host-directories \
+            --cut-dirs=6 \
+            --content-disposition \
+            'https://code.qt.io/cgit/qt/qtwebengine.git/plain/examples/webenginequick/minimal/?h=6.2.2'
+      - name: build
+        run: |
+          set -e
+          mkdir build/
+          pushd build/
+          cmake ../minimal
+          make
