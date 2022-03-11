@@ -12,7 +12,7 @@ jobs:
       - uses: jurplel/install-qt-action@v3
         with:
           version: '6.2.2'
-          modules: qtwebengine qtwebchannel
+          modules: qtwebengine qtwebchannel qtpositioning 
       - run: find ../
       - name: checkout the code from 'https://code.qt.io/cgit/qt/qtwebengine.git/tree/examples/webenginequick/minimal/?h=6.2.2'
         run: |
